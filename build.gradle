@@ -1,0 +1,31 @@
+plugins {
+	id 'java'
+	id 'se.thinkcode.cucumber-runner' version '0.0.8'
+	id "com.github.spacialcircumstances.gradle-cucumber-reporting" version "0.1.21"
+}
+
+group = 'com.alami.web'
+version '1.0-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+cucumberReports {
+	outputDir = file("$projectDir/build/generated-reports")
+	buildId = System.getenv('BUILD_NUMBER').toString()
+	reports = files("$projectDir/build/cucumber.json")
+}
+
+dependencies {
+	testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+	implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+	implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.3'
+	testImplementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.3'
+	implementation group: 'io.cucumber', name: 'cucumber-java', version: '6.10.4'
+	testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '6.10.4'
+	implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.6.0'
+}
+
+test{
+}
